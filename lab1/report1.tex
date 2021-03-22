@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}  % supports many of the math that I wil need
+%\usepackage[demo]{graphicx}
+\usepackage{subfig}  % to enable many images on the same row
 \graphicspath{ {/} }
 \newcommand{\en}{\selectlanguage{english}}  % define the short command we will use in the text
 \newcommand{\gr}{\selectlanguage{greek}} 
@@ -54,18 +56,15 @@
 πιο πάνω όπως αναφέραμε την \en \textbf{lsim()} \gr, το αποτέλεσμα της οποίας προβάλλουμε στο παράθυρο γραφικών. Η ακριβώς αντίστοιχη διαδικασία
 ακολουθήθηκε και για την δεύτερη συνάρτηση μεταφοράς.
 
-\begin{figure}[h] 
-    \centering
-    \includegraphics[width=0.7\textwidth]{H1responses}
-    \caption{Η κρουστική, η βηματική και η απόκριση ράμπας του H1.}
-    \label{fig:define_tf}
-\end{figure} 
-\begin{figure}[h] 
-    \centering
-    \includegraphics[width=0.7\textwidth]{H2responses}
-    \caption{Η κρουστική, η βηματική και η απόκριση ράμπας του H2.}
-    \label{fig:create_plot}
+
+
+\begin{center}
+\begin{figure}
+\subfloat[Η κρουστική, η βηματική και η απόκριση ράμπας του H2.]{\includegraphics[width = 2.5in]{H2responses}}
+\subfloat[Η κρουστική, η βηματική και η απόκριση ράμπας του H1.]{\includegraphics[width = 2.5in]{H1responses}}
+\caption{}
 \end{figure}
+\end{center}
 
 \section{Γραφικές Παραστάσεις}
 
@@ -101,22 +100,41 @@
 \end{center}
 
 
+
+
 \chapter{B Μέρος Άσκησης}
-\section{\en Ziegler-Nichols PID System\gr}
+\section{Υπολογισμός Συνάρτησης Μεταφοράς}
 
 
 Για να ξεκινήσουμε την υλοποίηση του μοντέλου ελεγκτή, ορίζουμε αρχικά το σύστημα ανοικτού βρόγχου τρίτης τάξεως που μας δίνεται στην περιγραφή της άσκησης, με
 όρους \en \textbf{Ks=1.0}, \textbf{$T_1$=2.0}, \textbf{$T_2$=2.0}, \textbf{$T_3$=2.0}. \gr
 Απο τον ορισμό των συναρτήσεων μεταφοράς στην \en Matlab\gr , προκύπτει η συνάρτηση μεταφοράς:
 \[ \frac{1}{8s^3+12s^2+6s+1}\]
-Χρησιμοποιώντας έναν βρόγχο \en \textbf{for}\gr με βήμα 0.5 απο το 1 έως το 20, ορίσαμε έναν \en controller P \gr και και ένα \en \textbf{feedback(sys*cont,1)}\gr  
+
+\section{\en Ziegler-Nichols PID System\gr}
+
+
+Χρησιμοποιώντας έναν βρόγχο \en \textbf{for}\gr με βήμα 0.5 απο το 1 έως το 20, ορίσαμε έναν \en controller P \gr και και ένα \en \textbf{feedback(sys*cont,1)}\gr    
 υπολογίσαμε την γραφική παράσταση της μοναδιαίας ανάδρασης με την συνάρτηση \en \textbf{stepinfo()}\gr. Ελέγχοντας σε κάθε loop εάν το \en \textbf{peakTime == Inf}\gr 
 μπορούμε να βρούμε ακριβώς σε ποιό \en Kp \gr έχουμε μόνιμες ταλαντώσεις του συστήματος, διακόπτωντας τον βρόγχο με την εντολή \en break\gr και κρατώντας την τιμή 
-του \en Kcrit\gr. 
+του \en Kcrit\gr, οπου πειραματικά υπολογίστηκε στην τιμή \textbf{8.000000}. Επίσης, μετρώντας την απόσταση μεταξύ δύο κορυφών 
+στην προαναφερθείσα ταλάντωση με το \en \textbf{findpeaks()}\gr  και έπειτα χρησιμοποιώντας το
+\en \textbf{max(diff())}\gr  για τον προσδιορισμό μίας μοναδικής τιμής \en Tcrit\gr, η οποία βγαίνει πειραματικά στην τιμή \textbf{7.306870}.
+
+% Multiple images in the same line
+
+\begin{center}
+\begin{figure}
+\subfloat[Απόκριση με μικρό \en Kp\gr]{\includegraphics[width = 1.7in]{before_Kcrit2}}
+\subfloat[Απόκριση \en Kp\gr  λίγο μικρότερο του \en Kcrit \gr]{\includegraphics[width = 1.7in]{before_Kcrit1}}
+\subfloat[Απόκριση με με μόνιμη ταλάντωση σε \en Kcrit \gr]{\includegraphics[width = 1.7in]{Kcrit_oscillation}}
+\caption{}
+\end{figure}
+\end{center}
+
+
 
 
 
 
 \end{document}
-
-
