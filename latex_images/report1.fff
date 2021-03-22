@@ -1,0 +1,77 @@
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{1aHdefinition}
+    \caption{Ο ορισμός των συναρτήσεων μεταφοράς και των αποκρίσεων τους.}
+    \label{fig:define_tf}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{1aH1}
+    \caption{Δημιουργία παραθύρου προβολής της βηματικής απόκρισης του Η1.}
+    \label{fig:create_plot}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\subfloat[Η κρουστική, η βηματική και η απόκριση ράμπας του H2.]{\includegraphics[width = 2.5in]{H2responses}}
+\subfloat[Η κρουστική, η βηματική και η απόκριση ράμπας του H1.]{\includegraphics[width = 2.5in]{H1responses}}
+\caption{}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{1aH11}
+    \caption{Ορισμός της συνάρτησης μεταφοράς H11.}
+    \label{fig:definition_of_h11}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{1aH11plot}
+    \caption{Γραφική αναπαράσταση της συνάρτησης μεταφοράς του H11.}
+    \label{fig:plot_of_h11}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{h1-h12_same_plot}
+    \caption{Γραφική απεικόνιση της βηματικής απόκρισης των συναρτήσεων \en h1-h12\gr.}
+    \label{fig:first_all_plots}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\subfloat[Απόκριση με μικρό \en Kp\gr]{\includegraphics[width = 1.7in]{before_Kcrit2}}
+\subfloat[Απόκριση \en Kp\gr  λίγο μικρότερο του \en Kcrit \gr]{\includegraphics[width = 1.7in]{before_Kcrit1}}
+\subfloat[Απόκριση με με μόνιμη ταλάντωση σε \en Kcrit \gr]{\includegraphics[width = 1.7in]{Kcrit_oscillation}}
+\caption{}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ZN_table}
+    \caption{Ο πίνακας ρύθμισης ελεγκτών \en Ziegler/Nichols\gr.}
+    \label{fig:first_all_plots}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\subfloat[Υλοποίηση \en P.\gr]{\includegraphics[width = 2in]{p_controller_ZN}}
+\subfloat[Υλοποίηση \en PI.\gr]{\includegraphics[width = 2in]{pi_controller_ZN}}
+\subfloat[Υλοποίηση \en PID.\gr]{\includegraphics[width = 2in]{pid_controller_ZN}}
+\caption{}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{ZN_all_plots}
+    \caption{Η τελική απόκριση του των συστημάτων με \en P, Pi \gr και \en PID \gr  ελεγκτές.}
+    \label{fig:ZN_all_plots}
+\end{figure}
