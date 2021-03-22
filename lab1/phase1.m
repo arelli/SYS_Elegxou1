@@ -45,7 +45,7 @@ xlabel('Time');
 hold on;
 % ramp response
 subplot(2,2,[3,4]);
-plot(time,rH1);
+plot(time,rH2);
 title('Ramp Response.')
 xlabel('Time');
 
