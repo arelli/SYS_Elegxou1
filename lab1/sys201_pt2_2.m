@@ -41,7 +41,8 @@ fprintf('\t\t0 percent overshoot\n');
 %///Parameters
 Kp1 = (0.3*Tb)/(K*Te);
 %\\\
-PID_controller = pidstd(Kp1)
+PID_controller = pidstd(Kp1);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);
@@ -64,7 +65,8 @@ legend('P_step','Tuned_P_step','Sys1');
 Kp2 = (0.35*Tb)/(K*Te);
 Ti1 = 1.2*Tb;
 %\\\
-PID_controller = pidstd(Kp2, Ti1)
+PID_controller = pidstd(Kp2, Ti1);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);
@@ -83,7 +85,8 @@ Kp3 = (0.6*Tb)/(K*Te);
 Ti2 = Tb;
 Td = 0.5*Te;
 %\\\
-PID_controller = pidstd(Kp3, Ti2, Td)
+PID_controller = pidstd(Kp3, Ti2, Td);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);
@@ -104,7 +107,8 @@ fprintf('\n\t\t20 percent overshoot\n');
 %///Parameters
 Kp1 = (0.7*Tb)/(K*Te);
 %\\\
-PID_controller = pidstd(Kp1)
+PID_controller = pidstd(Kp1);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);
@@ -127,7 +131,8 @@ legend('P_step','Tuned_P_step','Sys1');
 Kp2 = (0.6*Tb)/(K*Te);
 Ti1 = Tb;
 %\\\
-PID_controller = pidstd(Kp2, Ti1)
+PID_controller = pidstd(Kp2, Ti1);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);
@@ -146,7 +151,8 @@ Kp3 = (1.2*Tb)/(K*Te);
 Ti2 = 1.4*Tb;
 Td = 0.47*Te;
 %\\\
-PID_controller = pidstd(Kp3, Ti2, Td)
+PID_controller = pidstd(Kp3, Ti2, Td);
+tf(PID_controller)
 %****optimized controller
 Options = pidtuneOptions('PhaseMargin',75);
 tuned_ctrl = pidtune(sys1, PID_controller, Options);

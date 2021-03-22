@@ -74,11 +74,11 @@ xlabel('Time');
 %h1
 num = 1;
 den = [0.1 1];
-h1 = (tf(num,den)^2)
+h1 = (tf(num,den)^2);
 
 %h2
 den = [0.5 1];
-h2 = (tf(num,den)^2)
+h2 = (tf(num,den)^2);
 
 %h3
 den = [1 1];
