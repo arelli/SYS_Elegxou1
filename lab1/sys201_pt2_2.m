@@ -10,6 +10,7 @@ T1 = 2;
 T2 = 2;
 T3 = 2;
 
+%transfer function
 tmp1 = tf(1, [T1 1]);
 tmp2 = tf(1, [T2 1]);
 tmp3 = tf(1, [T3 1]);
@@ -22,6 +23,7 @@ subplot(2,1,1),
 step(sys1)
 subplot(2,1,2),
 step(M)
+title('Feedback loop step response')
 
 K = 1;
 Te = 1.7;     %tu
@@ -58,4 +60,3 @@ step(m);
 title('PID controller')
 
 
-T_max = 10*Td;
