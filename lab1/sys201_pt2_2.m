@@ -34,7 +34,7 @@ Tb = 6.7;   %tg
 %p controller
 Kp = (0.6*Tb)/(K*Te);
 pid_ctrl = pidstd(Kp)
-figure
+figure('name', '0% overshoot')
 subplot(3,1,1),
 m = feedback(pid_ctrl*sys1,1);
 step(m);
@@ -59,4 +59,31 @@ m = feedback(pid_ctrl*sys1,1);
 step(m);
 title('PID controller')
 
+% ********* 20% overshoot ***********
+%p controller
+Kp = (0.7*Tb)/(K*Te);
+pid_ctrl = pidstd(Kp)
+figure('name', '20% Overshoot')
+subplot(3,1,1),
+m = feedback(pid_ctrl*sys1,1);
+step(m);
+title('P controller')
 
+%pi controller
+Kp = (0.95*Tb)/(K*Te);
+Ti = 2.3*Te;
+pid_ctrl = pidstd(Kp, Ti)
+subplot(3,1,2),
+m = feedback(pid_ctrl*sys1,1);
+step(m);
+title('PI controller')
+
+%pid controller
+Kp = (1.2*Tb)/(K*Te);
+Ti = 2*Te;
+Td = 0.42*Te;
+pid_ctrl = pidstd(Kp, Ti, Td)
+subplot(3,1,3),
+m = feedback(pid_ctrl*sys1,1);
+step(m);
+title('PID controller')
