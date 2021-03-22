@@ -25,8 +25,8 @@ H2 = H1^2
 rH2 = lsim(H2,time,time);
 
 % H1
-figure('Name','pepe');
-pidtool(H1);
+% figure('Name','pepe');
+% pidtool(H1);
 
 %% a1.figures 
 % H1
