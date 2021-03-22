@@ -99,9 +99,20 @@
     \label{fig:first_all_plots}
 \end{figure}
 \end{center}
-\chapter{B Μέρος Άσκησης}
-\section{\en Ziegler Nichols PID System\gr}
 
+
+\chapter{B Μέρος Άσκησης}
+\section{\en Ziegler-Nichols PID System\gr}
+
+
+Για να ξεκινήσουμε την υλοποίηση του μοντέλου ελεγκτή, ορίζουμε αρχικά το σύστημα ανοικτού βρόγχου τρίτης τάξεως που μας δίνεται στην περιγραφή της άσκησης, με
+όρους \en \textbf{Ks=1.0}, \textbf{$T_1$=2.0}, \textbf{$T_2$=2.0}, \textbf{$T_3$=2.0}. \gr
+Απο τον ορισμό των συναρτήσεων μεταφοράς στην \en Matlab\gr , προκύπτει η συνάρτηση μεταφοράς:
+\[ \frac{1}{8s^3+12s^2+6s+1}\]
+Χρησιμοποιώντας έναν βρόγχο \en \textbf{for}\gr με βήμα 0.5 απο το 1 έως το 20, ορίσαμε έναν \en controller P \gr και και ένα \en \textbf{feedback(sys*cont,1)}\gr  
+υπολογίσαμε την γραφική παράσταση της μοναδιαίας ανάδρασης με την συνάρτηση \en \textbf{stepinfo()}\gr. Ελέγχοντας σε κάθε loop εάν το \en \textbf{peakTime == Inf}\gr 
+μπορούμε να βρούμε ακριβώς σε ποιό \en Kp \gr έχουμε μόνιμες ταλαντώσεις του συστήματος, διακόπτωντας τον βρόγχο με την εντολή \en break\gr και κρατώντας την τιμή 
+του \en Kcrit\gr. 
 
 
 
