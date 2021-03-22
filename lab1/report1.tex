@@ -1,11 +1,11 @@
-\documentclass[12pt, a4paper]{report}  % report depends on what Im writing
+\documentclass[10pt, a4paper]{report}  % report depends on what Im writing
 \usepackage[english,greek]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}  % supports many of the math that I wil need
 \graphicspath{ {/} }
-\newcommand{\en}{\selectlanguage{english}}
-\newcommand{\gr}{\selectlanguage{greek}}
+\newcommand{\en}{\selectlanguage{english}}  % define the short command we will use in the text
+\newcommand{\gr}{\selectlanguage{greek}} 
 
 \title{$1^o$ Εργαστήριο στα Συστήματα Ελέγχου}
 \author{Ε. Κατσούπης, Α. Γιουμερτάκης, Ρ. Ελληνιτάκης, Κ. Βούλγαρης}
@@ -19,15 +19,91 @@
 \en
 \section{Matlab \grκαι \en PID Control Systems }
 \gr
+
+
 Με τις συναρτήσεις και τα εργαλεία που μας προσφέρει η \en Matlab\gr, μπορούμε εύκολα να μοντελοποιήσουμε και να μικρορυθμίσουμε
 τα συστήματα ελέγχου μας μέσω γραφεικών απεικονίσεων και έτοιμων εργαλείων. Μερικά απο αυτά είναι το \en PID Tuner\gr, που χρησιμοποιήσαμε
 για να τελειοποιήσουμε τα βάρη των συστημάτων ελέγχου μας, η συνάρτηση\en feedback()\gr που ορίζει τον βρόγχο ανάδρασης μεταξύ εξόδου και 
 εισόδοι του κυκλώματος μας, της  \en pidstd()\gr που μας βοηθάει να ορίσουμε ένα \en control system\gr με τις μεταβλητές που του δίνονται κ.α.
-\section{Κώδικες Matlab}
+
+\section{Κώδικες \en Matlab\gr}
+
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.4\textwidth]{1aHdefinition}
+    \caption{Ο ορισμός των συναρτήσεων μεταφοράς και των αποκρίσεων τους.}
+    \label{fig:define_tf}
+\end{figure} 
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{1aH1}
+    \caption{Δημιουργία παραθύρου προβολής της βηματικής απόκρισης του Η1.}
+    \label{fig:create_plot}
+\end{figure} 
+
+
+Για να ορίσουμε την συνάρτηση μεταφοράς που μας δίνεται απο την εκφώνηση, και σύμφωνα με την εικόνα 1.1, χρησιμοποιούμε την μέθοδο \en \textbf{tf()} \gr της \en Matlab \gr
+και της δίνουμε ώς όρισμα πίνακες για τον αριθμιτή και τον παρονομαστή, που αντιστοιχούν σε κάποια τάξη πολυωνύμου και τους συντελεστές 
+της. Παρατηρούμε οτι η δεύτερη συνάρτηση μεταφοράς είναι η πρώτη αλλα υψωμένη στο τετράγωνο, οπότε δεν την ορίζουμε απο την αρχή. 
+
+
+Χρησιμοποιούμε το \en \textbf{lsim()} \gr για να μπορέσουμε αργότερα να προβάλλουμε την γραφική παράσταση της απόκρισης ράμπας του κάθε
+συστήματος, όπως φαίνεται στην εικόνα 1.2, και έπειτα με την χρήση της \en subplot() \gr ορίζουμε τα παράθυρα με τις γραφικές παραστάσεις, και μέσω της \en \textbf{step()} \gr παίρνουμε
+την \textbf{βηματική απόκριση}. Έπειτα, για την \textbf{κρουστική απόκριση}, δίνουμε την συνάρτηση μεταφοράς μας στην μέθοδο \en \textbf{impulse()}\gr 
+η οποία μας προβάλλει την γραφική απεικόνιση της κρουστικής απόκρισης στο αναδυόμενο παράθυρο. Τέλος, για την \textbf{ απόκριση ράμπας} χρησιμοποιήσαμε 
+πιο πάνω όπως αναφέραμε την \en \textbf{lsim()} \gr, το αποτέλεσμα της οποίας προβάλλουμε στο παράθυρο γραφικών. Η ακριβώς αντίστοιχη διαδικασία
+ακολουθήθηκε και για την δεύτερη συνάρτηση μεταφοράς.
+
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.7\textwidth]{H1responses}
+    \caption{Η κρουστική, η βηματική και η απόκριση ράμπας του H1.}
+    \label{fig:define_tf}
+\end{figure} 
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.7\textwidth]{H2responses}
+    \caption{Η κρουστική, η βηματική και η απόκριση ράμπας του H2.}
+    \label{fig:create_plot}
+\end{figure}
+
+\section{Γραφικές Παραστάσεις}
+
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.6\textwidth]{1aH11}
+    \caption{Ορισμός της συνάρτησης μεταφοράς H11.}
+    \label{fig:definition_of_h11}
+\end{figure} 
+
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.5\textwidth]{1aH11plot}
+    \caption{Γραφική αναπαράσταση της συνάρτησης μεταφοράς του H11.}
+    \label{fig:plot_of_h11}
+\end{figure}
+
+
+Για τις γραφικές παραστάσεις χρησιμοποιήθηκε αντίστοιχη διαδικασία με την προαναφερθείσα στο τμήμα 1.2, με χρήση της \en \textbf{tf()} \gr για ορισμό των 
+συναρτήσεων μεταφοράς, της \en \textbf{subplot()}\gr  για άνοιγμα παραθύρων πολλαπλών γραφικών και της \en \textbf{step()} \gr για αναπαράσταση της 
+βηματικής απόκρισης. Ονομάσαμε τις συναρτήσεις μεταφοράς με διαδοχικά ονόματα \en \textbf{h1,h1,h3...h12}\gr για εύκολη αναγνώριση και ανάγνωση.
+Για απλούστευση της διαδικασίας, όπως φαίνεται στην εικόνα 1.5 για να κατασκευάσουμε τον σύνθετο παρονομαστή, ορίζουμε δύο διαφορετικές 
+συναρτήσεις και υψώνουμε και πολλαπλασιάζουμε αντίστοιχα, όπως παρακάτω:
+\[ \frac{1}{0.5*s+1} \frac{1}{(0.1*s+1)^3}=\frac{1}{(0.5s+1)(0.1s+1)^3} \]
+Το τελικό αποτέλεσμα αποτυπώνεται στο σχήμα 1.5.
+\begin{center}
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.9\textwidth]{h1-h12_same_plot}
+    \caption{Γραφική απεικόνιση της βηματικής απόκρισης των συναρτήσεων \en h1-h12\gr.}
+    \label{fig:first_all_plots}
+\end{figure}
+\end{center}
+\chapter{B Μέρος Άσκησης}
+\section{\en Ziegler Nichols PID System\gr}
 
 
 
-Τα συστήματα ελέγχου είναι παντού στην καθημερινή μας ζωή.
 
 
 \end{document}

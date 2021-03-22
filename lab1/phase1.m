@@ -25,8 +25,8 @@ H2 = H1^2
 rH2 = lsim(H2,time,time);
 
 % H1
-figure('Name','pepe');
-pidtool(H1);
+% figure('Name','pepe');
+% pidtool(H1);
 
 %% a1.figures 
 % H1
@@ -65,7 +65,7 @@ xlabel('Time');
 hold on;
 % ramp response
 subplot(2,2,[3,4]);
-plot(time,rH1);
+plot(time,rH2);
 title('Ramp Response.')
 xlabel('Time');
 
