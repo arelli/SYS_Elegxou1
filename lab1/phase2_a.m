@@ -48,7 +48,7 @@ for Kp=1:stepper:Kp_max
     
     % At a Periodic Tranfer Fanction (step response)
     % PeakTime (time at which the peak value occurs) is infinite 
-    % due to the its a periodic signal
+    % due to the fact that its a periodic signal
     if plantInfo.PeakTime == Inf
         Kp_crit = Kp;
         break;
@@ -60,13 +60,13 @@ end
 % Finding the T_critical
 [y,t]=step(plants{i});
 [pks,locs] = findpeaks(y,t);
-T_crit = max(diff(locs));
+T_crit = max(diff(locs)); 
 
 fprintf('K_critical: %.1f. \nT_critical: %.3f seconds. \n\n', Kp_crit, T_crit);
 
 % Display plots that helped.
 
-% To crate dinamically a matrix of plots in the same figure
+% To crate dynamically a matrix of plots in the same figure
 % See numSubplots.m for more info.
 p = numSubplots(length(plants));
 
@@ -91,7 +91,6 @@ end
 
 % P Control
 Kp1 = 0.5*Kp_crit;
-%T_max = 100;  % random value
 PID_controller = pidstd(Kp1);  
 p_step = feedback(sys1*PID_controller,1);
 %optimized controller
@@ -103,7 +102,6 @@ opt_p_step = feedback(sys1*opt_c1,1);
 % PI Control
 Kp2 = 0.45*Kp_crit;
 Ti1 = 0.85*T_crit;
-% T_max = 100;  % random value
 PID_controller = pidstd(Kp2,Ti1);  
 pi_step = feedback(sys1*PID_controller,1);
 %optimized controller
@@ -115,7 +113,6 @@ opt_pi_step = feedback(sys1*opt_c1,1);
 Kp3 = 0.6*Kp_crit;
 Ti2 = 0.5*T_crit;
 Td = 0.12*T_crit;
-% T_max = 30*Td;
 PID_controller = pidstd(Kp3,Ti2,Td);
 opt_pid_c = pidstd(0.77,4.31,1.07);    %optimal pid ctrl
 pid_step = feedback(sys1*PID_controller,1);
@@ -130,7 +127,6 @@ step([0:100],sys1,p_step,pi_step,pid_step);
 %legend(['Sys1','P_stepKp (Kp = ' num2str(Kp1) ')'] ,['PI_step (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ')'] ,['PID_step (Kp = ' num2str(Kp3) ',Ki = ' num2str(Ti2) ',Kd = ' num2str(Td) ')']);
 
 legend(['Sys1','The linear system'],['P_step (Kp = ' num2str(Kp1) ')'] ,['PI_step (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ')'] ,['PID_step (Kp = ' num2str(Kp3) ',Ki = ' num2str(Ti2) ',Kd = ' num2str(Td) ')']);
-% fprintf('The P, PI and PID responses are projected in one plot \nat a seperate window\n');
 %plot all the above 
 
 figure('Name','TF of P,PI,PID controlers');
