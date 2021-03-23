@@ -1,4 +1,4 @@
-function [K, Te, Tb] = paramCalc(SYS)
+function m = paramCalc(SYS)
 
     [Y,time] = step(SYS);
     
@@ -22,4 +22,6 @@ function [K, Te, Tb] = paramCalc(SYS)
     Te = time(index_0);
     Tb = time(index_1) - Te;
     fprintf('K: %.3f \nTu: %.3f s \nTg: %.3f s\n', K, Te, Tb);
+    hold off
+    m = [K, Te, Tb];
 end
