@@ -19,7 +19,7 @@ function m = paramCalc(SYS)
 
     %find intersection points with y=0 and y=1
     index_0 =  find(tangent>=0, 1);
-    index_1 =  find(tangent>=1, 1);
+    index_1 =  find(tangent>=K, 1);
     Te = time(index_0);
     Tb = time(index_1) - Te;
     fprintf('K: %.3f \nTu: %.3f s \nTg: %.3f s\n', K, Te, Tb);
