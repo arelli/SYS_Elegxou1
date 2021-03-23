@@ -11,6 +11,7 @@ function m = paramCalc(SYS)
     A = D(inflex)*time(inflex)-Y(inflex);
     
     %plots
+    figure('name', 'Tangent with System')
     tangent = D(inflex)*time - A;
     step(SYS)
     hold on
