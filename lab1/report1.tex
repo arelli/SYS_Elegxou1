@@ -10,15 +10,15 @@
 \newcommand{\en}{\selectlanguage{english}}  % define the short command we will use in the text
 \newcommand{\gr}{\selectlanguage{greek}} 
 
-\title{$1^o$ Εργαστήριο στα Συστήματα Ελέγχου}
-\author{Ευάγγελος Κατσούπης 2017030---\\ Απόστολος Γιουμερτάκης 2017030---\\ Α. Ραφαήλ Ελληνιτάκης 2017030118\\ Κωνσταντίνος Βούλγαρης 2017030---}
+\title{\textbf{$1^o$ Εργαστήριο στα Συστήματα Ελέγχου}}
+\author{Ευάγγελος Κατσούπης 2017030077\\ Απόστολος Γιουμερτάκης 2017030142\\ Α. Ραφαήλ Ελληνιτάκης 2017030118\\ Κωνσταντίνος Βούλγαρης 2017030125\\ \\ \textbf{Ομάδα 37}}
 \date{20 Μαρτίου 2021}
 
 \begin{document}
 
 \maketitle
 
-\chapter{Α Μέρος Άσκησης}
+\chapter{Α' Μέρος Άσκησης}
 \en
 \section{\en Matlab \grκαι \en PID Control Systems.}
 \gr
@@ -26,8 +26,8 @@
 
 Με τις συναρτήσεις και τα εργαλεία που μας προσφέρει η \en Matlab\gr, μπορούμε εύκολα να μοντελοποιήσουμε και να μικρορυθμίσουμε
 τα συστήματα ελέγχου μας μέσω γραφικών απεικονίσεων και έτοιμων εργαλείων. Μερικά από αυτά είναι το \en PID Tuner\gr, που χρησιμοποιήσαμε
-για να τελειοποιήσουμε τα βάρη των συστημάτων ελέγχου μας, η συνάρτηση \en feedback()\gr που ορίζει τον βρόγχο ανάδρασης μεταξύ εξόδου και 
-εισόδου του κυκλώματος μας, της  \en pidstd()\gr που μας βοηθάει να ορίσουμε ένα \en control system\gr με τις μεταβλητές που του δίνονται,
+για να τελειοποιήσουμε τα βάρη των συστημάτων ελέγχου μας, η συνάρτηση \en \textbf{feedback()}\gr που ορίζει τον βρόγχο ανάδρασης μεταξύ εξόδου και 
+εισόδου του κυκλώματος μας, της  \en \textbf{pidstd()}\gr που μας βοηθάει να ορίσουμε ένα \en control system\gr με τις μεταβλητές που του δίνονται,
 την \en \textbf{impulse()}\gr, την \en \textbf{step()}\gr κ.α. 
 
 
@@ -105,19 +105,45 @@
     \label{fig:A_all_plots}
 \end{figure}
 \end{center}
-Παρατηρούμε στην γραφική αναπαράσταση όλων των συναρτήσεων μεταφοράς, στο σχήμα \ref{fig:A_all_plots}, τις βηματικές αποκρίσεις τους συγκριτικά μεταξύ τους.
+Παρατηρούμε στην γραφική αναπαράσταση όλων των συναρτήσεων μεταφοράς, στο σχήμα \ref{fig:A_all_plots}, τις βηματικές αποκρίσεις τους συγκριτικά μεταξύ τους. Επίσης οι τιμές των \en Ks, Tu \gr και \en Tg \gr βρίσκονται στον πίνακα \ref{tab:KsTuTg_table}.
+\en
+\begin{table}[] % tabular inside of table because it lets us
+	\begin{center}  % add a caption! Alone {tabular} cant do that.
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Ks      & Tu       & Tg      \\ 
+		\hline
+		0.99987 & 0        & 0.31776 \\
+		0.99952 & 0.096709 & 0.81512 \\
+		0.99952 & 0.032236 & 0.27171 \\
+		0.99709 & 0.15     & 1.36    \\
+		0.99787 & 0.29     & 2.72    \\
+		0.99783 & 0.055262 & 0.74604 \\
+		0.99783 & 0.22105  & 2.9842  \\
+		0.99783 & 0.55262  & 7.4604  \\
+		0.99987 & 0.46052  & 10.592  \\
+		0.99991 & 0.15     & 0.44    \\
+		0.99991 & 0.72     & 2.23    \\
+		0.99894 & 1.43     & 4.46    \\
+		0.99852 & 0.21184  & 0.9026  \\
+		0.99852 & 1.0592   & 4.5131 \\
+		\hline
+	\end{tabular}
+	\caption{\gr Οι τιμές των \en Ks, Tu \gr και \en Tg \gr όλων των συναρτήσεων μεταφοράς του πρώτου ερωτήματος με την συνάρτηση \en paramCalc()\gr.}
+	\label{tab:KsTuTg_table}
+	\end{center}
+\end{table}
 
 
-
-
-\chapter{B Μέρος Άσκησης}
+\gr
+\chapter{B' Μέρος Άσκησης}
 \section{Υπολογισμός Συνάρτησης Μεταφοράς}
 
 
 Για να ξεκινήσουμε την υλοποίηση του μοντέλου ελεγκτή, ορίζουμε αρχικά το σύστημα ανοικτού βρόγχου τρίτης τάξεως που μας δίνεται στην περιγραφή της άσκησης, με
-όρους \en \textbf{Ks=1.0}, \textbf{$T_1$=2.0}, \textbf{$T_2$=2.0}, \textbf{$T_3$=2.0}. \gr
+όρους:  $$\en \textbf{Ks=1.0}, \textbf{$T_1$=2.0}, \textbf{$T_2$=2.0}, \textbf{$T_3$=2.0}. \gr $$
 Απο τον ορισμό των συναρτήσεων μεταφοράς στην \en Matlab\gr , προκύπτει η συνάρτηση μεταφοράς:
-\[ \frac{1}{8s^3+12s^2+6s+1}\]
+\[ H(s)=\frac{1}{8s^3+12s^2+6s+1}\]
 
 \section{\en Ziegler-Nichols PID System\gr}
 
@@ -143,9 +169,9 @@
 
 \begin{center}
 \begin{figure}
-\subfloat[Απόκριση με μικρό \en Kp (Kp=4)\gr]{\includegraphics[width = 2.2in]{before_Kcrit2}}
-\subfloat[Απόκριση \en Kp \gr  λίγο μικρότερο του \en Kcrit(Kp=6.5)\gr]{\includegraphics[width = 2.2in]{before_Kcrit1}}
-\subfloat[Απόκριση με με μόνιμη ταλάντωση σε \en Kcrit=8 \gr]{\includegraphics[width = 2.2in]{Kcrit_oscillation}}
+\subfloat[Απόκριση με μικρό \en Kp (Kp=4)\gr]{\includegraphics[width = 2.1in]{before_Kcrit2}}
+\subfloat[Απόκριση με \en Kp \gr  λίγο μικρότερο του \en Kcrit(Kp=6.5)\gr]{\includegraphics[width = 2.1in]{before_Kcrit1}}
+\subfloat[Απόκριση με με μόνιμη ταλάντωση σε \en Kcrit=8 \gr]{\includegraphics[width = 2.1in]{Kcrit_oscillation}}
 \caption{}
 \end{figure}
 \end{center}
@@ -181,13 +207,13 @@
 \begin{itemize}  % make a list of the next tree paragraphs
 \item
 % two consecutive empty lines insert a new paragraph
-Αρχικά, ο \textbf{ελεγκτής τύπου \en P \gr} με χρόνο ανύψωσης 2.45 δευτερόλεπτα βλέπουμε ότι δεν 
+Αρχικά, ο \textbf{ελεγκτής τύπου \en P \gr} με χρόνο ανύψωσης 1.93 δευτερόλεπτα βλέπουμε ότι δεν 
 κάνει σημαντικό \en overshoot\gr, και έχει σταθεροποιηθεί αρκετά μέχρι τα 40 δευτερόλεπτα, αλλά παρουσιάζει σφάλμα μόνιμης κατάστασης 0.2 στην περίπτωση μας.
 
 \item
 Έπειτα, ο \textbf{ελεγκτής τύπου \en PI \gr} με χρόνο ανύψωσης 2.2 δευτερόλεπτα, κάνει αισθητό \en overshoot \gr +0.5 μονάδες, ενώ ταλαντώνεται μέχρι τα 60 δευτερόλεπτα σημαντικά.
 \item
-Τέλος, ο \textbf{ελεγκτής \en PID \gr}, κάνει επίσης \en overshoot \gr κατά 0.4 μονάδες, αλλά σταθεροποιείται σχετικά γρήγορα και έχει αρκετά μικρό χρόνο ανύψωσης 1.9 δευτερόλεπτα.
+Τέλος, ο \textbf{ελεγκτής \en PID \gr}, κάνει επίσης \en overshoot \gr κατά 0.4 μονάδες, αλλά σταθεροποιείται σχετικά γρήγορα και έχει αρκετά μικρό χρόνο ανύψωσης 1.99 δευτερόλεπτα.
 \end{itemize}
 
 Για τις μετρήσεις των χρόνων ανύψωσής βλέπουμε το σχήμα σχεδιάστηκαν οι εφαπτόμενες ευθείες στο σημείο καμπής των γραφικών παραστάσεων, με την χρήση των συναρτήσεων 
@@ -201,25 +227,16 @@
 
 Για να βρούμε την συνάρτηση μεταφοράς του κάθε ελεγκτή, χρησιμοποιήσαμε την μέθοδο \en \textbf{tf()} \gr  που μπορεί να χρησιμοποιηθεί
 για να μετατρέψει ένα δυναμικό σύστημα σε συνάρτηση μεταφοράς, σύμφωνα με το επίσημο \en documentation \gr της \en Matlab\gr. 
-\newpage
+
 Παρακάτω παρατίθενται οι συναρτήσεις μεταφοράς του κάθε ελεγκτή:
-
-
 \begin{itemize}
-  \item Το σύστημα \en P\gr:   \[ 4\]
-  \item Το σύστημα \en PI\gr:  \[\frac{3.6s+0.5796}{s}\]
-  \item Το σύστημα \en PID\gr: \[\frac{4.209s^2+4.8s+1.314}{s}\]
+  \item Το σύστημα \en P\gr:    \[\en P=\gr 4 (static-gain)\]
+  \item Το σύστημα \en PI\gr:   \[\en PI=\gr \frac{3.6s+0.5796}{s}\]
+  \item Το σύστημα \en PID\gr:  \[\en PID=\gr \frac{4.209s^2+4.8s+1.314}{s}\]
 \end{itemize}
 
-\begin{center}
-\begin{figure}
-\subfloat[Χρόνος ανύψωσης \en P.\gr]{\includegraphics[width = 2in]{p_anipsosi}}
-\subfloat[Χρόνος ανύψωσης \en PI.\gr]{\includegraphics[width = 2in]{pi_anipsosi}}
-\subfloat[Χρόνος ανύψωσης \en PID.\gr]{\includegraphics[width = 2in]{pid_anipsosi}}
-\caption{}
-\end{figure}
-\end{center}
 
+Είναι εμφανές ότι το σύστημα \en P \gr έχει σταθερό κέρδος, ενώ το σύστημα \en PI \gr περιγράφεται από δευτεροβάθμια, και τι \en PID \gr από τριτοβάθμια συνάρτηση μεταφοράς.
 
 
 
