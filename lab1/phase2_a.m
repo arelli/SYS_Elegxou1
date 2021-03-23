@@ -99,6 +99,7 @@ Options = pidtuneOptions('PhaseMargin',60);
 opt_c1 = pidtune(sys1, PID_controller, Options);
 opt_p_step = feedback(sys1*opt_c1,1);
 
+
 % PI Control
 Kp2 = 0.45*Kp_crit;
 Ti1 = 0.85*T_crit;
@@ -128,7 +129,7 @@ figure('Name','TF of P,PI,PID controlers');
 step([0:100],sys1,p_step,pi_step,pid_step);
 %legend(['Sys1','P_stepKp (Kp = ' num2str(Kp1) ')'] ,['PI_step (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ')'] ,['PID_step (Kp = ' num2str(Kp3) ',Ki = ' num2str(Ti2) ',Kd = ' num2str(Td) ')']);
 
-legend(['Sys1','The linear system'],['p_step','P_stepKp (Kp = ' num2str(Kp1) ')'] ,['PI_step (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ')'] ,['PID_step (Kp = ' num2str(Kp3) ',Ki = ' num2str(Ti2) ',Kd = ' num2str(Td) ')']);
+legend(['Sys1','The linear system'],['P_step (Kp = ' num2str(Kp1) ')'] ,['PI_step (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ')'] ,['PID_step (Kp = ' num2str(Kp3) ',Ki = ' num2str(Ti2) ',Kd = ' num2str(Td) ')']);
 % fprintf('The P, PI and PID responses are projected in one plot \nat a seperate window\n');
 %plot all the above 
 
