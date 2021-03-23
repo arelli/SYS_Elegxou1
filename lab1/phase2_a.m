@@ -93,10 +93,10 @@ end
 Kp1 = 0.5*Kp_crit;
 PID_controller = pidstd(Kp1);  
 p_step = feedback(sys1*PID_controller,1);
-%optimized controller
-Options = pidtuneOptions('PhaseMargin',60);
-opt_c1 = pidtune(sys1, PID_controller, Options);
-opt_p_step = feedback(sys1*opt_c1,1);
+% %optimized controller
+% Options = pidtuneOptions('PhaseMargin',60);
+% opt_c1 = pidtune(sys1, PID_controller, Options);
+% opt_p_step = feedback(sys1*opt_c1,1);
 
 
 % PI Control
@@ -104,10 +104,10 @@ Kp2 = 0.45*Kp_crit;
 Ti1 = 0.85*T_crit;
 PID_controller = pidstd(Kp2,Ti1);  
 pi_step = feedback(sys1*PID_controller,1);
-%optimized controller
-Options = pidtuneOptions('PhaseMargin',69);
-opt_c1 = pidtune(sys1, PID_controller, Options);
-opt_pi_step = feedback(sys1*opt_c1,1);
+% %optimized controller
+% Options = pidtuneOptions('PhaseMargin',69);
+% opt_c1 = pidtune(sys1, PID_controller, Options);
+% opt_pi_step = feedback(sys1*opt_c1,1);
     
 % PID Control
 Kp3 = 0.6*Kp_crit;
@@ -116,10 +116,10 @@ Td = 0.12*T_crit;
 PID_controller = pidstd(Kp3,Ti2,Td);
 opt_pid_c = pidstd(0.77,4.31,1.07);    %optimal pid ctrl
 pid_step = feedback(sys1*PID_controller,1);
-%optimized controller
-Options = pidtuneOptions('PhaseMargin',75);
-opt_c1 = pidtune(sys1, PID_controller, Options);
-opt_pid_step = feedback(sys1*opt_c1,1);
+% %optimized controller
+% Options = pidtuneOptions('PhaseMargin',75);
+% opt_c1 = pidtune(sys1, PID_controller, Options);
+% opt_pid_step = feedback(sys1*opt_c1,1);
 
 % Plot controlers
 figure('Name','TF of P,PI,PID controlers');
@@ -133,29 +133,29 @@ figure('Name','TF of P,PI,PID controlers');
 subplot(3,1,1);
 step(p_step);
 hold on;
-step(opt_p_step)
-hold on
+% step(opt_p_step)
+% hold on
 step(sys1);
 title(['P controler (Kp = ' num2str(Kp1) ').']);
-legend('P_step','Tuned_P_step','Sys1');
+legend('P_step','Sys1');
 hold on;
 
 
 subplot(3,1,2);
 step(pi_step);
 hold on;
-step(opt_pi_step);
-hold on
+% step(opt_pi_step);
+% hold on
 step(sys1);
 title(['PI controler (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ').']);
-legend('PI_step','Tuned_PI_step','Sys1');
+legend('PI_step','Sys1');
 hold on;
 
 subplot(3,1,3);
 step(pid_step);
 hold on;
-step(opt_pid_step);
-hold on
+% step(opt_pid_step);
+% hold on
 step(sys1);
 title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
-legend('PID_step','Tuned_PID_step','Sys1');
+legend('PID_step','Sys1');
