@@ -1,10 +1,11 @@
 function [K, Te, Tb] = paramCalc(SYS)
 
     [Y,time] = step(SYS);
-
+    
+    %Max amplitude
     K = Y(end);
 
-    %find inflection point using 2st derivative => '0'
+    %find inflection point using 2nd derivative => '0'
     D = diff(Y)./diff(time);
     inflex = find(diff(D)./diff(time(1:end-1))<0,1);
     A = D(inflex)*time(inflex)-Y(inflex);
