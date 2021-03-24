@@ -31,7 +31,7 @@ hold on;
 % xlabel('Time');
 
 % Parameters
-[K, Te, Tb] = paramCalc(sys1);
+params = paramCalc(sys1);
 % Given parameters
 K = 1;
 Te = 1.7;     %tu
