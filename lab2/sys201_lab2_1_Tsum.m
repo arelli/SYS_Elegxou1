@@ -47,7 +47,7 @@ title(['PI controler (Kp = ' num2str(Kp) ', Ki = ' num2str(Ti)  ').']);
 legend('PI_step')
 
 
-% Step response for rpm control with Tsum method
+% Step response for voltage control with Tsum method
 f = 1/16;
 t1=0:0.01:60;
 pulse = 2*square(2*pi*f*t1)/2 + 4;
