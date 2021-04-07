@@ -45,13 +45,13 @@ title(['PI controler (Kp = ' num2str(Kp) ', Ki = ' num2str(Ti)  ').']);
 legend('PI_step')
 
 
-%D.2
+%D.5
 f = 1/16;
 t1=0:0.01:60;
-pulse = 500*square(2*pi*f*t1)/2 + 1750;
+pulse = 2*square(2*pi*f*t1)/2 + 4;
 figure
 plot(t1, pulse)
-axis([0 60 0 4000])
+axis([0 60 0 10])
 hold on
 resp = lsim(m,pulse,t1);
 plot(t1, resp) 
