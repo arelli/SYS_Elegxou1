@@ -17,10 +17,6 @@ plot(t, y);
 title('Step Response.');
 xlabel('Time'); 
 
-% %///Parameters
-% disp('p')
-% Kp1 = (0.3*Tb)/(Ks*Te);
-% %\\\
 
 %///Parameters
 disp('pi')
@@ -29,8 +25,8 @@ Ti = 1.2*Tb;
 %\\\
 figure('Name','PI controller')
 PID_controller = pidstd(Kp, Ti);
-m3 = feedback(PID_controller*sys,1)
-step(m3)
+m = feedback(PID_controller*sys,1);
+step(m)
 title(['PI controler (Kp = ' num2str(Kp) ', Ki = ' num2str(Ti)  ').']);
 legend('PI_step')
 
@@ -43,13 +39,12 @@ figure
 plot(t1, pulse)
 axis([0 60 0 4000])
 hold on
-
-resp = lsim(m3,pulse,t1);
+resp = lsim(m,pulse,t1);
 plot(t1, resp) 
+e = resp - (pulse.');
 
-% %///Parameters
-% disp('pid')
-% Kp3 = (0.6*Tb)/(Ks*Te);
-% Ti2 = Tb;
-% Td = 0.5*Te;
-% %\\\
+iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2);            % ISE 
+itae = trapz(t1, t1'.*abs(e));     % ITAE
+itse = trapz(t1,t1'.*(e.^2));      % ITSE
+
