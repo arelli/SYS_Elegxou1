@@ -63,6 +63,4 @@ ise = trapz(t1,e.^2);            % ISE
 itae = trapz(t1, t1'.*abs(e));     % ITAE
 itse = trapz(t1,t1'.*(e.^2));      % ITSE
 
-% D.3
-% Change T1, T2 to 0.8 and 0.2 respectively (rule of thumb)
 
