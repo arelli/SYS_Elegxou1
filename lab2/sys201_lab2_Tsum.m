@@ -1,9 +1,9 @@
 clear all
 close all
 clc
-Ks = 0.87;
-Te = 0.1;  %tu
-Tb = 1.12;  %tg
+Ks = 0.8;
+Te = 0.14;  %tu
+Tb = 1.05;  %tg
 
 T1 = 0.37*Tb;
 T2 = 3.33*Te;
@@ -17,9 +17,9 @@ figure('Name','Transfer function')
 t=0:0.01:20;
 for k=1:length(t)
     if(t(k)<5)
-        y(k) = 2;
+        y(k) = 5;
     else
-        y(k) = 8;
+        y(k) = 7;
     end
 end
 plot(t, y);
@@ -31,7 +31,7 @@ xlabel('Time');
 axis([0 20 0 10])
 hold off
 
-        % PI contoller with Tsum method
+        % PI contoller with Tsum Method
 %///Parameters
 disp('pi')
 Kp = 0.5/Ks;
@@ -48,10 +48,10 @@ legend('PI_step')
 % Step response for rpm control with Tsum method
 f = 1/16;
 t1=0:0.01:60;
-pulse = 2*square(2*pi*f*t1)/2 + 4;
+pulse = 500*square(2*pi*f*t1)/2 + 1750;
 figure
 plot(t1, pulse)
-axis([0 60 0 10])
+axis([0 60 0 4000])
 hold on
 resp = lsim(m,pulse,t1);
 plot(t1, resp) 
@@ -62,4 +62,5 @@ iea = trapz(t1,abs(e));          % IAE trapz=numerical integration
 ise = trapz(t1,e.^2);            % ISE 
 itae = trapz(t1, t1'.*abs(e));     % ITAE
 itse = trapz(t1,t1'.*(e.^2));      % ITSE
+
 
