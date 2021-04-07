@@ -9,17 +9,17 @@ sys  = Ks * tf(1, [T1 1]) * tf(1, [T2 1])
 
 %///Parameters
 disp('p')
-Kp1 = (0.3*Tb)/(K*Te);
+Kp1 = (0.3*Tb)/(Ks*Te);
 %\\\
 
 %///Parameters
 disp('pi')
-Kp2 = (0.35*Tb)/(K*Te);
+Kp2 = (0.35*Tb)/(Ks*Te);
 Ti1 = 1.2*Tb;
 %\\\
 %///Parameters
 disp('pid')
-Kp3 = (0.6*Tb)/(K*Te);
+Kp3 = (0.6*Tb)/(Ks*Te);
 Ti2 = Tb;
 Td = 0.5*Te;
 %\\\
