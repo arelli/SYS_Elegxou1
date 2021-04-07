@@ -11,11 +11,25 @@ T2 = 3.33*Te;
 sys  = Ks * tf(1, [T1 1]) * tf(1, [T2 1])
 
 figure('Name','Transfer function')
-% subplot(2,1,1);
-[y,t] = step(sys);
+% [y,t] = step(sys);
+t=0:0.01:20;
+for k=1:length(t)
+    if(t(k)<5)
+        y(k) = 5;
+    else
+        y(k) = 7;
+    end
+end
 plot(t, y);
+hold on
+st = lsim(sys,y,t);
+plot(t, st);
 title('Step Response.');
 xlabel('Time'); 
+axis([0 20 0 10])
+hold off
+
+
 
 
 %///Parameters
