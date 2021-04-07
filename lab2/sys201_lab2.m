@@ -10,6 +10,8 @@ T2 = 3.33*Te;
 
 sys  = Ks * tf(1, [T1 1]) * tf(1, [T2 1])
 
+% D.1
+
 figure('Name','Transfer function')
 % [y,t] = step(sys);
 t=0:0.01:20;
@@ -29,9 +31,7 @@ xlabel('Time');
 axis([0 20 0 10])
 hold off
 
-
-
-
+        % PI contoller
 %///Parameters
 disp('pi')
 Kp = (0.35*Tb)/(Ks*Te);
@@ -57,8 +57,12 @@ resp = lsim(m,pulse,t1);
 plot(t1, resp) 
 e = resp - (pulse.');
 
+% Errors
 iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
 ise = trapz(t1,e.^2);            % ISE 
 itae = trapz(t1, t1'.*abs(e));     % ITAE
 itse = trapz(t1,t1'.*(e.^2));      % ITSE
+
+% D.3
+% Change T1, T2 to 0.8 and 0.2 respectively (rule of thumb)
 
