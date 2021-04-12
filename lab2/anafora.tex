@@ -21,11 +21,12 @@
 	\chapter{Υπολογιστικό Μέρος}
 	\section{Κινητήρας}
 	\gr
-	Χρησιμοποιήσαμε το λογιμικό Matlab για όλους τους υπολογισμούς και τις γραφικές παραστάσεις.
+	Έχοντας την συνάρτηση μεταφοράς που περιγράφει έναν κινητηρα, προσπαθούμε να υπολογίσουμε την συμπεριφορά του θεωρητικά σε διάφορα σενάρια φόρτου και εισόδων ελέγχου.
+	Χρησιμοποιήσαμε το λογιμικό \en Matlab \gr για όλους τους υπολογισμούς και τις γραφικές παραστάσεις.
 	Δεδομένης της συνάρτησης μεταφοράς που μας δίνεται:
 	$$ H(s) = K_s \frac{1}{T_1s+1}\frac{1}{T_2s+1} = \frac{b_0}{s^2 + a_1s+a_0} $$
 	
-	
+	\noindent
 	1)Μας δίνονται οι εξής παράμετροι:
 	$$K_s = 0.8, T_g=1.05sec, T_u = 0.14sec$$ 
 	Υπολογίσαμε τις παραμέτρους του \en PI \gr συστήματος με την μέθοδο \en CHR overshoot 0\% \gr όπως φαίνεται στην εικόνα \ref{fig:d1}. Όπως και στο προηγούμενο εργαστήριο, με την μέθοδο \en pidstd() \gr ορίσαμε το σύστημα ελέγχου μας. Το \en $T_b$ \gr αντιστοιχεί στο \en $T_g$ \gr και το \en $T_e$ \gr αντιστοιχεί στο \en $T_u$ \gr όπως ξέρουμε απο θεωρία.
@@ -56,7 +57,7 @@
 	Ο παλμός που δημιουργήθηκε, δόθηκε ώς είσοδος στο σύστημα που δημιουργήσαμε στο προηγούμενο ερώτημα και η απόκριση του φαίνεται στο σχήμα \ref{fig:d2_pulse_graph}.
 	\begin{figure}[h] 
 		\centering
-		\includegraphics[width=0.7\textwidth]{d2_pulse_graph}
+		\includegraphics[width=0.5\textwidth]{d2_pulse_graph}
 		\caption{Εδώ φαίνεται η απόκριση του συστήματος ελέγχου στο σήμα που είναι ουσιαστικά \en PWM \gr.}
 		\label{fig:d2_pulse_graph}
 	\end{figure} 
@@ -73,7 +74,7 @@
 	Τα παραπάνω υλοποιήθηκαν με την συνάρτηση \en trapz() \gr της \en Matlab \gr, που υλοποιεί ολοκλήρωση χωρίζοντας το επίπεδο σε τραπέζια, όπως φαίνεται στην εικόνα \ref{fig:d2_errors}
 	\begin{figure}[h] 
 		\centering
-		\includegraphics[width=0.5\textwidth]{d2_errors}
+		\includegraphics[width=0.3\textwidth]{d2_errors}
 		\caption{Η υλοποίηση των δεικτών σφάλματος.}
 		\label{fig:d2_errors}
 	\end{figure} 
@@ -89,7 +90,7 @@
 	Για να ρυθμίσουμε τον ελεγκτή με την συγκεκριμένη μέθοδο, αρκεί να συμβουλευθούμε τον πίνακα \ref{fig:tsum_method}.
 	\begin{figure}[h] 
 		\centering
-		\includegraphics[width=0.7\textwidth]{tsum_method}
+		\includegraphics[width=0.6\textwidth]{tsum_method}
 		\caption{Ο πίνακας εμπειρικής ρύθμισης $T_{sum}$.}
 		\label{fig:tsum_method}
 	\end{figure} 
@@ -98,11 +99,19 @@
 	Και στην εικόνα \ref{fig:tsum_code} δίνεται ο κώδικας για την υλοποίηση. Γνωρίζουμε οτι $T_s = T_1 + T_2$ απο θεωρία.:
 	\begin{figure}[h] 
 		\centering
-		\includegraphics[width=0.3\textwidth]{tsum_code}
+		\includegraphics[width=0.2\textwidth]{tsum_code}
 		\caption{Νέος ορισμός $K_p$ και $T_i$ για το νέο εμπειρικά ρυθμισμένο σύστημα. }
 		\label{fig:tsum_code}
 	\end{figure} 
-	
+
+
+	Στην εικόνα \ref{fig:d3_pulse_graph} φαίνεται η απόκριση στον \en "PWM" \gr παλμό του κινητήρα. Είναι εμφανώς ομαλότερη απο την μέθοδο \en CHR 0\% overshoot \gr.
+	\begin{figure}[h] 
+		\centering
+		\includegraphics[width=0.5\textwidth]{d3_pulse_graph}
+		\caption{Η απόκριση του συστήματος που είναι ρυθμισμένο με την μέθοδο $T_sum$. }
+		\label{fig:d3_pulse_graph}
+	\end{figure} 
 	
 		
 \end{document}
