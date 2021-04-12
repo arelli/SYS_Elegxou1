@@ -28,8 +28,10 @@ plot(t, y);
 hold on
 st = lsim(sys,y,t);
 plot(t, st);
-title('Step Response.');
-xlabel('Time'); 
+title('Open-loop Step Response.');
+ylabel('Uo (Volts)');
+xlabel('Time (s)'); 
+legend('Input signal', 'Step response')
 axis([0 20 0 10])
 hold off
 
@@ -51,12 +53,16 @@ legend('PI_step')
 f = 1/16;
 t1=0:0.01:60;
 pulse = 2*square(2*pi*f*t1)/2 + 4;
-figure
+figure('Name','Step response')
 plot(t1, pulse)
 axis([0 60 0 10])
 hold on
 resp = lsim(m,pulse,t1);
 plot(t1, resp) 
+title('PI controller (Tsum) step response')
+legend('Pulse', 'System Response')
+xlabel('Time (s)'); 
+ylabel('Uv (volts)');
 e = resp - (pulse.');
 
 % Errors
