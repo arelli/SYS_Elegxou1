@@ -10,6 +10,38 @@
 \newcommand{\en}{\selectlanguage{english}}  % define the short command we will use in the text
 \newcommand{\gr}{\selectlanguage{greek}} 
 
+\usepackage{listings}
+\usepackage{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% code snippet, see overleaf for healp
+% Code input related settings
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}  % changed this color to match the plot window of Matlab
+
+% defines the colors of the style "mystyle"
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=none,     % changed this because we dont want numbered lines in 5 lines of code               
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+% sets "mystyle" as active color profile
+\lstset{style=mystyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{\textbf{$2^o$ Εργαστήριο στα Συστήματα Ελέγχου}}
 \author{Ευάγγελος Κατσούπης 2017030077\\ Απόστολος Γιουμερτάκης 2017030142\\ Α. Ραφαήλ Ελληνιτάκης 2017030118\\ Κωνσταντίνος Βούλγαρης 2017030125\\ \\ \textbf{Ομάδα 37}}
 \date{5 Απριλίου 2021}
@@ -29,57 +61,72 @@
 	\noindent
 	1)Μας δίνονται οι εξής παράμετροι:
 	$$K_s = 0.8, T_g=1.05sec, T_u = 0.14sec$$ 
-	Υπολογίσαμε τις παραμέτρους του \en PI \gr συστήματος με την μέθοδο \en CHR overshoot 0\% \gr όπως φαίνεται στην εικόνα \ref{fig:d1}. Όπως και στο προηγούμενο εργαστήριο, με την μέθοδο \en pidstd() \gr ορίσαμε το σύστημα ελέγχου μας. Το \en $T_b$ \gr αντιστοιχεί στο \en $T_g$ \gr και το \en $T_e$ \gr αντιστοιχεί στο \en $T_u$ \gr όπως ξέρουμε απο θεωρία.
-	\begin{figure}[h] 
-		\centering
-		\includegraphics[width=0.4\textwidth]{d1}
-		\caption{Ο ορισμός του \en PI \gr συστήματος και ο υπολογισμός παραμέτρων του.}
-		\label{fig:d1}
-	\end{figure} 
+	Υπολογίσαμε τις παραμέτρους του \en PI \gr συστήματος με την μέθοδο \en CHR overshoot 0\% \gr. Όπως και στο προηγούμενο εργαστήριο, με την μέθοδο \en pidstd() \gr ορίσαμε το σύστημα ελέγχου μας. Το \en $T_b$ \gr αντιστοιχεί στο \en $T_g$ \gr και το \en $T_e$ \gr αντιστοιχεί στο \en $T_u$ \gr όπως ξέρουμε απο θεωρία.Στον κώδικα \ref{lst:definition_of_controller_d1} βλέπουμε την υλοποίηση σε \en Matlab\gr.
+	\en
+	\begin{lstlisting}[language=Matlab,label={lst:definition_of_controller_d1}, caption=Definition of the PI Controller]
+		Kp = (0.35*Tb)/(Ks*Te);
+		Ti = 1.2*Tb;
+		figure('Name','PI controller')
+		PID_controller = pidstd(Kp, Ti);  % definition of the PI controller
+		m = feedback(PID_controller*sys,1);  % definition of the feedback
+		step(m)  % step response of the system
+	\end{lstlisting}
+	\gr
 
 	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{d1_graph}
-		\caption{Η απόκριση του νέου συστήματος.}
+		\caption{Η απόκριση του νέου συστήματος σε ένα \en step \gr απο τα 5 στα 7 \en volts\gr.}
 		\label{fig:d1_graph}
 	\end{figure}
 	
 	\newpage
 
 	
-	2) Για το δεύτερο ερώτημα, πρέπει να δημιουργήσουμε τον παλμό που εικονίζεται στην εκφώνηση, με πλάτος \en peak to peak \gr 500$\frac{n_w}{rpm}$, θετικό \en offset \gr 1500, και περίοδο 16 δευτερόλεπτα. Το κάνουμε όπως φαίνεται στην εικόνα \ref{fig:d2_pulse}
-	\begin{figure}[h] 
-		\centering
-		\includegraphics[width=0.5\textwidth]{d2_pulse}
-		\caption{Η δημιουργία του παλμού με όρους \en Matlab \gr.}
-		\label{fig:d2_pulse}
-	\end{figure} 
+	2) Για το δεύτερο ερώτημα, πρέπει να δημιουργήσουμε τον παλμό που εικονίζεται στην εκφώνηση, με πλάτος \en peak to peak \gr 500$\frac{n_w}{rpm}$, θετικό \en offset \gr 1500, και περίοδο 16 δευτερόλεπτα. Το κάνουμε όπως φαίνεται στον κώδικα παρακάτω, στοn κώδικα \ref{lst:square_pulse_definition}. 
+	\en
+	\begin{lstlisting}[language=Matlab,label={lst:square_pulse_definition}, caption=Definition of the square pulse]
+		f = 1/16;  % definition of the frequency
+		t1=0:0.01:60;  
+		pulse = 500*square(2*pi*f*t1)/2 + 1750;  % definition of the square pulse
+		plot(t1, pulse)
+		axis([0 60 0 4000])
+		hold on  
+		resp = lsim(m,pulse,t1);  % feeding the pulse into the control system m
+		plot(t1, resp) 
+		e = resp - (pulse.');  % defining the error ,to use in the error indices later
+	\end{lstlisting}
+	\gr
+
+
 	Ο παλμός που δημιουργήθηκε, δόθηκε ώς είσοδος στο σύστημα που δημιουργήσαμε στο προηγούμενο ερώτημα και η απόκριση του φαίνεται στο σχήμα \ref{fig:d2_pulse_graph}.
+	
+	
 	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{d2_pulse_graph}
-		\caption{Εδώ φαίνεται η απόκριση του συστήματος ελέγχου στο σήμα που είναι ουσιαστικά \en PWM \gr.}
+		\caption{Εδώ φαίνεται η απόκριση του συστήματος ελέγχου στο σήμα \en PWM \gr με \en CHR \gr μέθοδο.}
 		\label{fig:d2_pulse_graph}
 	\end{figure} 
 
 
 	Για να βρούμε τους δείκτες σφάλματος \en ISE, IAE, ITAE \gr και \en ITSE \gr, πρέπει πρώτα να ορίσουμε το σφάλμα:
 	$$e(t) = |response(t)-pulse(t)|$$
-	Το οποίο υλοποιήθηκε με την εντολή \en \textbf{e = resp - (pulse.');} \gr με την τελεία και την απόστροφο να δείχνουν τον ανάστροφο πίνακα του \en pulse \gr για να μπορεί να γίνει η πράξη με την απόκρισι.
+	Το οποίο υλοποιήθηκε με ώς \en \textbf{e = resp - (pulse.');} \gr(με όρους \en Matlab\gr) με την τελεία και την απόστροφο να δείχνουν τον ανάστροφο πίνακα του \en pulse \gr για να μπορεί να γίνει η πράξη με την απόκρισγ.
 	Έπειτα, το υποβάλλουμε σε διάφορες ολοκληρώσεις, όπως:
-	$$ISE = \int_{0}^{\infty} e^2(t) \,dx  $$
-	$$ISE = \int_{0}^{\infty} |e(t)| \,dx  $$
-	$$ITSE = \int_{0}^{\infty} te^2(t) \,dx  $$
-	$$ITAE = \int_{0}^{\infty} t|e(t)| \,dx  $$
+	$$ISE = \int_{0}^{\infty} e^2(t) \,dx \text{,     } ISE = \int_{0}^{\infty} |e(t)| \,dx  $$
+	$$ITSE = \int_{0}^{\infty} te^2(t) \,dx \text{,     }  ITAE = \int_{0}^{\infty} t|e(t)| \,dx  $$
 	Τα παραπάνω υλοποιήθηκαν με την συνάρτηση \en trapz() \gr της \en Matlab \gr, που υλοποιεί ολοκλήρωση χωρίζοντας το επίπεδο σε τραπέζια, όπως φαίνεται στην εικόνα \ref{fig:d2_errors}
-	\begin{figure}[h] 
-		\centering
-		\includegraphics[width=0.3\textwidth]{d2_errors}
-		\caption{Η υλοποίηση των δεικτών σφάλματος.}
-		\label{fig:d2_errors}
-	\end{figure} 
+	\en
+	\begin{lstlisting}[language=Matlab, caption=Definition of the Error Indices]
+		iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+		ise = trapz(t1,e.^2);            % ISE 
+		itae = trapz(t1, t1'.*abs(e));     % ITAE
+		itse = trapz(t1,t1'.*(e.^2));      % ITSE
+	\end{lstlisting}
+	\gr 
 
-
+	\newpage
 	Με τα παραπάνω, καταλήξαμε στις εξής τιμές δεικτών σφαλμάτων:
 	$$IAE = 2.737$$
 	$$ISE = 1.52$$
@@ -87,25 +134,30 @@
 	$$ITSE = 1.53$$	
 	
 	3)Ρύθμιση με την εμπειρική μέθοδο $T_{sum}$
-	Για να ρυθμίσουμε τον ελεγκτή με την συγκεκριμένη μέθοδο, αρκεί να συμβουλευθούμε τον πίνακα \ref{fig:tsum_method}.
-	\begin{figure}[h] 
-		\centering
-		\includegraphics[width=0.6\textwidth]{tsum_method}
-		\caption{Ο πίνακας εμπειρικής ρύθμισης $T_{sum}$.}
-		\label{fig:tsum_method}
-	\end{figure} 
+	Για να ρυθμίσουμε τον ελεγκτή με την συγκεκριμένη μέθοδο, αρκεί να συμβουλευθούμε τον πίνακα που ξέρουμε για την ρύθμιση $T_{sum}$, όπως φαίνεται παρακάτω:
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Ελεγκτής & $K$ & $T_i$ & $T_d$ \\
+			\hline
+			$PI$ & $\frac{0.5}{K_s}$ & $0.5T_S$ & - \\
+			\hline
+		\end{tabular}
+	\end{center}
 
 
-	Και στην εικόνα \ref{fig:tsum_code} δίνεται ο κώδικας για την υλοποίηση. Γνωρίζουμε οτι $T_s = T_1 + T_2$ απο θεωρία.:
-	\begin{figure}[h] 
-		\centering
-		\includegraphics[width=0.2\textwidth]{tsum_code}
-		\caption{Νέος ορισμός $K_p$ και $T_i$ για το νέο εμπειρικά ρυθμισμένο σύστημα. }
-		\label{fig:tsum_code}
-	\end{figure} 
+	Και στο παρακάτω πεδίο δίνεται ο κώδικας για την υλοποίηση. Γνωρίζουμε οτι $T_s = T_1 + T_2$ απο θεωρία.:
+	\en
+	\begin{lstlisting}[language=Matlab, caption= \gr Νέος ορισμός $K_p$ και $T_i$ για το νέο εμπειρικά ρυθμισμένο σύστημα.\en]
+		Kp = 0.5/Ks;  % Tsum Method to find Kp
+		Ti = 0.5*(T1+T2);  % Tsum Method to find Ti
+		PID_controller = pidstd(Kp, Ti);  % definition of the PI system
+		m = feedback(PID_controller*sys,1);  % the feedback of the system
+	\end{lstlisting}
+	\gr 
 
 
-	Στην εικόνα \ref{fig:d3_pulse_graph} φαίνεται η απόκριση στον \en "PWM" \gr παλμό του κινητήρα. Είναι εμφανώς ομαλότερη απο την μέθοδο \en CHR 0\% overshoot \gr.
+	Στην εικόνα \ref{fig:d3_pulse_graph} φαίνεται η απόκριση στον \en "PWM" \gr παλμό του κινητήρα. Είναι εμφανώς ομαλότερη απο την μέθοδο \en CHR 0\% overshoot \gr, αλλα με μεγαλύτερο χρόνο απόκρισης.
 	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{d3_pulse_graph}
