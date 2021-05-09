@@ -117,6 +117,12 @@ legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Nw (rpm)'); 
 e = resp - (y1.');
+disp('P errors')
+% Errors
+iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2);            % ISE 
+itae = trapz(t1, t1'.*abs(e));     % ITAE
+itse = trapz(t1,t1'.*(e.^2));      % ITSE
 
 % pi response
 subplot(3,1,2),
@@ -130,6 +136,12 @@ legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Nw (rpm)'); 
 e = resp - (y1.');
+disp('PI errors')
+% Errors
+iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2);            % ISE 
+itae = trapz(t1, t1'.*abs(e));     % ITAE
+itse = trapz(t1,t1'.*(e.^2));      % ITSE
 
 % pid response
 subplot(3,1,3),
@@ -143,3 +155,75 @@ legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Nw (rpm)'); 
 e = resp - (y1.');
+% Errors
+disp('PID errors')
+iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2);            % ISE 
+itae = trapz(t1, t1'.*abs(e));     % ITAE
+itse = trapz(t1,t1'.*(e.^2));      % ITSE
+
+
+
+%% D3
+
+% ********* 0% overshoot ***********
+fprintf('\n\t\t0 percent disturbance\n');
+
+        %pid controller
+%///Parameters
+Kp3 = (0.95*Tg)/(Ks*Tu);
+Ti2 = 2.4*Tg;
+Td = 0.42*Tu;
+%\\\
+PID_controller = pidstd(Kp3, Ti2, Td);
+tf(PID_controller)
+m4 = feedback(PID_controller*sys,1)
+%plots
+figure('name', '0% Overshoot')
+step(m4); 
+hold on;
+step(sys);
+title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
+legend('PID_step','Sys');
+hold off;
+
+% input
+t1=0:0.001:900;
+for k=1:length(t1)
+    if(t1(k)<=0)
+        y2(k) = 5;
+    elseif(t1(k)>0 && t1(k)<=300)
+        y2(k) = 6;
+    elseif(t1(k)>300 && t1(k)<=600)
+        y2(k) = 8;
+    else
+        y2(k) = 5;
+    end
+end
+% disorder
+f = 1/100;
+disorder_pulse = square(2*pi*f*t1)/2 + 1/2;
+
+y_disorderd = y2 + disorder_pulse;
+% figure('Name','Step response')
+% plot(t1, y_disorderd)
+
+figure('Name','Step response')
+plot(t1, y2)
+axis([0 900 0 10])
+hold on
+resp = lsim(m4,y_disorderd,t1);
+plot(t1, resp) 
+hold on;
+plot(t1, disorder_pulse);
+title('P controller step response')
+legend('Input', 'System Response')
+xlabel('Time (s)'); 
+ylabel('Nw (rpm)'); 
+e = resp - (y2.');
+% Errors
+disp('PID disturbance errors')
+iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2);            % ISE 
+itae = trapz(t1, t1'.*abs(e));     % ITAE
+itse = trapz(t1,t1'.*(e.^2));      % ITSE
