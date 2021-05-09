@@ -116,7 +116,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
 iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
@@ -134,7 +134,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
 iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
@@ -152,7 +152,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
 iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 

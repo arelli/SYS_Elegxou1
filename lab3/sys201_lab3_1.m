@@ -115,7 +115,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 disp('P errors')
 % Errors
@@ -134,7 +134,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 disp('PI errors')
 % Errors
@@ -153,7 +153,7 @@ plot(t1, resp)
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
 disp('PID errors')
@@ -219,7 +219,7 @@ plot(t1, disorder_pulse);
 title('P controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
-ylabel('Nw (rpm)'); 
+ylabel('Ub (V)'); 
 e = resp - (y2.');
 % Errors
 disp('PID disturbance errors')
