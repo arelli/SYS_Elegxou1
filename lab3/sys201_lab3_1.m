@@ -46,13 +46,13 @@ PID_controller = pidstd(Kp1);
 tf(PID_controller)
 m1 = feedback(PID_controller*sys,1)
 %plots
-figure('name', '20% Overshoot')
-subplot(3,1,1),
-step(m1); 
-hold on;
-step(sys);
-title(['P controler (Kp = ' num2str(Kp1) ').']);
-legend('P_step','Sys');
+% figure('name', '20% Overshoot')
+% subplot(3,1,1),
+% step(m1); 
+% hold on;
+% step(sys);
+% title(['P controler (Kp = ' num2str(Kp1) ').']);
+% legend('P_step','Sys');
 
 
         %pi controller
@@ -64,12 +64,12 @@ PID_controller = pidstd(Kp2, Ti1);
 tf(PID_controller)
 m2 = feedback(PID_controller*sys,1)
 %plots
-subplot(3,1,2),
-step(m2); 
-hold on; 
-step(sys);
-title(['PI controler (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ').']);
-legend('PI_step','Sys');
+% subplot(3,1,2),
+% step(m2); 
+% hold on; 
+% step(sys);
+% title(['PI controler (Kp = ' num2str(Kp2) ', Ki = ' num2str(Ti1) ').']);
+% legend('PI_step','Sys');
 
 
 
@@ -85,12 +85,12 @@ PID_controller = pidstd(Kp3, Ti2, Td);
 tf(PID_controller)
 m3 = feedback(PID_controller*sys,1)
 %plots
-subplot(3,1,3),
-step(m3); 
-hold on; 
-step(sys);
-title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
-legend('PID_step','Sys');
+% subplot(3,1,3),
+% step(m3); 
+% hold on; 
+% step(sys);
+% title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
+% legend('PID_step','Sys');
 
 %input
 t1=0:0.01:900;
