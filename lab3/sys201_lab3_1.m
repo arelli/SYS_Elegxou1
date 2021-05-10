@@ -1,6 +1,7 @@
 close all;
 clear all;
 pkg load control
+pkg load signal
 clc
 
 Ks = 0.75;
@@ -129,7 +130,7 @@ subplot(3,1,2),
 plot(t1, y1)
 axis([0 900 0 10])
 hold on
-resp = lsim(m1,y1,t1);
+resp = lsim(m2,y1,t1);
 plot(t1, resp) 
 title('P controller step response')
 legend('Input', 'System Response')
@@ -148,7 +149,7 @@ subplot(3,1,3),
 plot(t1, y1)
 axis([0 900 0 10])
 hold on
-resp = lsim(m1,y1,t1);
+resp = lsim(m3,y1,t1);
 plot(t1, resp) 
 title('P controller step response')
 legend('Input', 'System Response')
