@@ -105,7 +105,7 @@ for k=1:length(t1)
 end
 
 % p response
-figure('Name','Step response')
+figure('Name','2) 20% Overshoot controllers')
 subplot(3,1,1),
 plot(t1, y1)
 axis([0 900 0 10])
@@ -179,13 +179,13 @@ PID_controller = pidstd(Kp3, Ti2, Td);
 tf(PID_controller)
 m4 = feedback(PID_controller*sys,1)
 %plots
-figure('name', '0% Overshoot')
-step(m4); 
-hold on;
-step(sys);
-title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
-legend('PID_step','Sys');
-hold off;
+% figure('name', '0% Overshoot')
+% step(m4); 
+% hold on;
+% step(sys);
+% title(['PID controler (Kp = ' num2str(Kp3) ', Ki = ' num2str(Ti2) ', Kd = ' num2str(Td) ').']);
+% legend('PID_step','Sys');
+% hold off;
 
 % input
 t1=0:0.001:900;
@@ -208,7 +208,7 @@ y_disorderd = y2 + disorder_pulse;
 % figure('Name','Step response')
 % plot(t1, y_disorderd)
 
-figure('Name','Step response')
+figure('Name','3) 0% Overshoot PID')
 plot(t1, y2)
 axis([0 900 0 10])
 hold on
@@ -216,7 +216,7 @@ resp = lsim(m4,y_disorderd,t1);
 plot(t1, resp) 
 hold on;
 plot(t1, disorder_pulse);
-title('P controller step response')
+title('PID controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
