@@ -106,7 +106,7 @@ for k=1:length(t1)
 end
 
 %p response
-figure('Name','Step response')
+figure('Name','Tsum method controllers')
 subplot(3,1,1),
 plot(t1, y1)
 axis([0 900 0 10])
