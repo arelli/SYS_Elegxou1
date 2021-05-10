@@ -109,11 +109,11 @@ end
 figure('Name','Tsum method controllers')
 subplot(3,1,1),
 plot(t1, y1)
-axis([0 900 0 10])
+axis([0 500 0 10])
 hold on
 resp = lsim(m1,y1,t1);
 plot(t1, resp) 
-title('P controller step response')
+title('P controller response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
@@ -128,11 +128,11 @@ itse = trapz(t1,t1'.*(e.^2))      % ITSE
 %pi response
 subplot(3,1,2),
 plot(t1, y1)
-axis([0 900 0 10])
+axis([0 500 10])
 hold on
 resp = lsim(m2,y1,t1);
 plot(t1, resp) 
-title('PI controller step response')
+title('PI controller response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
@@ -147,11 +147,11 @@ itse = trapz(t1,t1'.*(e.^2))      % ITSE
 %pid response
 subplot(3,1,3),
 plot(t1, y1)
-axis([0 900 0 10])
+axis([0 500 0 10])
 hold on
 resp = lsim(m3,y1,t1);
 plot(t1, resp) 
-title('PID controller step response')
+title('PID controller response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
