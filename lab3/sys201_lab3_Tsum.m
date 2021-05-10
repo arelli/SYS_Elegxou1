@@ -131,7 +131,7 @@ axis([0 900 0 10])
 hold on
 resp = lsim(m2,y1,t1);
 plot(t1, resp) 
-title('P controller step response')
+title('PI controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
@@ -149,7 +149,7 @@ axis([0 900 0 10])
 hold on
 resp = lsim(m3,y1,t1);
 plot(t1, resp) 
-title('P controller step response')
+title('PID controller step response')
 legend('Input', 'System Response')
 xlabel('Time (s)'); 
 ylabel('Ub (V)'); 
