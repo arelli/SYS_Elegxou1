@@ -1,11 +1,6 @@
 close all;
 clear all;
-<<<<<<< HEAD
-pkg load control
-pkg load signal
-=======
 pkg load control % Delete it
->>>>>>> 0a89c9a454d1bdaf9a5d783c8533cb29cd7a2d2d
 clc
 
 Ks = 0.75;
