@@ -119,10 +119,11 @@ xlabel('Time (s)');
 ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
-iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
-ise = trapz(t1,e.^2);            % ISE 
-itae = trapz(t1, t1'.*abs(e));     % ITAE
-itse = trapz(t1,t1'.*(e.^2));      % ITSE
+disp('P errors')
+iea = trapz(t1,abs(e))          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2)            % ISE 
+itae = trapz(t1, t1'.*abs(e))     % ITAE
+itse = trapz(t1,t1'.*(e.^2))      % ITSE
 
 %pi response
 subplot(3,1,2),
@@ -137,12 +138,13 @@ xlabel('Time (s)');
 ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
-iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
-ise = trapz(t1,e.^2);            % ISE 
-itae = trapz(t1, t1'.*abs(e));     % ITAE
-itse = trapz(t1,t1'.*(e.^2));      % ITSE
+disp('PI errors')
+iea = trapz(t1,abs(e))          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2)            % ISE 
+itae = trapz(t1, t1'.*abs(e))     % ITAE
+itse = trapz(t1,t1'.*(e.^2))      % ITSE
 
-%pi response
+%pid response
 subplot(3,1,3),
 plot(t1, y1)
 axis([0 900 0 10])
@@ -155,9 +157,10 @@ xlabel('Time (s)');
 ylabel('Ub (V)'); 
 e = resp - (y1.');
 % Errors
-iea = trapz(t1,abs(e));          % IAE trapz=numerical integration 
-ise = trapz(t1,e.^2);            % ISE 
-itae = trapz(t1, t1'.*abs(e));     % ITAE
-itse = trapz(t1,t1'.*(e.^2));      % ITSE
+disp('PID errors')
+iea = trapz(t1,abs(e))          % IAE trapz=numerical integration 
+ise = trapz(t1,e.^2)            % ISE 
+itae = trapz(t1, t1'.*abs(e))    % ITAE
+itse = trapz(t1,t1'.*(e.^2))     % ITSE
 
 
